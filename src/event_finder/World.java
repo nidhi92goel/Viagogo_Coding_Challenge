@@ -50,25 +50,33 @@ public class World
 		
 		check_event(x,y,0);
 		
-		while(count<5)
+		for(int d=1;d<21;d++)
 		{
-			for(int d=1;d<21;d++)
+			for(int i=0;i<=d;i++)
 			{
-				for(int i=0;i<=d;i++)
-				{
-					x1=x-i;
-					y1=y-d+i;
+				x1=x-i;
+				y1=y-d+i;
 					
-					check_event(x1,y1,d);
+				check_event(x1,y1,d);
 					
-					x1=x+i;
-					y1=y+d-i;
-					
-					check_event(x1,y1,d);
-				}
+				x1=x+i;
+				y1=y+d-i;
 				
-				
+				check_event(x1,y1,d);
 			}
+				
+			for(int i=1;i<=d;i++)
+			{
+				x1=x-i;
+				y1=y+d-i;
+					
+				check_event(x1,y1,d);
+					
+				x1=x+i;
+				y1=y-d+i;
+				
+				check_event(x1,y1,d);
+			}	
 		}
 	}
 	
@@ -86,6 +94,9 @@ public class World
 			
 				System.out.println("Event "+ String.format("%03d", number)+" - $"+price+"0, Distance "+distance);
 				count++;
+				
+				if(count==5)
+				 System.exit(0);
 			}
 		}
 	}
@@ -93,19 +104,45 @@ public class World
 	public static void main(String[] args)
 	{
 		Scanner scan = new Scanner(System.in);
+		boolean correct_input=false;
+		String input;
+		String[] coordinates;
 		
 		create_events();
 		
-		System.out.println("Please Input Coordinates (coordinates seperated by comma eg 4,2):");
-		String input=scan.next();
+		while(correct_input==false)
+		{
+			System.out.println("Please Input Coordinates (coordinates seperated by comma eg 4,2):");		
+			input=scan.next();
+			
+			if(input.contains(","))
+			{
+				coordinates=input.split(",");
+				
+				if(coordinates.length>2)
+				{
+					correct_input=false;
+					continue;
+				}
+				
+				if(coordinates[0]==null || coordinates[0].isEmpty() || coordinates[1]==null || coordinates[1].isEmpty())
+				{
+					correct_input=false;
+					continue;
+				}
+				  
+				
+			}
+			else
+			{
+				correct_input=false;
+			}
+		}
 		
 		int x=Integer.parseInt(input.split(",")[0])+10;
 		int y=Integer.parseInt(input.split(",")[1])+10;
 		
-		find_events(x,y);
-		
 		/*
-		int count=0;
 		for(int i=0;i<21;i++)
 		{
 			for(int j=0;j<21;j++)
@@ -120,6 +157,8 @@ public class World
 		    System.out.println();
 		}
 		*/
+		
+		find_events(x,y);
 		
 	}
 }
