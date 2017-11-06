@@ -1,6 +1,5 @@
 package event_finder;
 
-import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -106,7 +105,9 @@ public class World
 		Scanner scan = new Scanner(System.in);
 		boolean correct_input=false;
 		String input;
-		String[] coordinates;
+		String[] coordinates = null;
+		int x = 0;
+		int y = 0;
 		
 		create_events();
 		
@@ -119,7 +120,7 @@ public class World
 			{
 				coordinates=input.split(",");
 				
-				if(coordinates.length>2)
+				if(coordinates.length!=2)
 				{
 					correct_input=false;
 					continue;
@@ -130,35 +131,30 @@ public class World
 					correct_input=false;
 					continue;
 				}
-				  
 				
+				if(!coordinates[0].matches("^[-]?[0-9]*$") || !coordinates[1].matches("^[-]?[0-9]*$"))
+				{
+					correct_input=false;
+					continue;
+				}
+
+				x=Integer.parseInt(coordinates[0]);
+				y=Integer.parseInt(coordinates[1]);
+				
+				if(x>10 || x<-10 || y>10 || y<-10)
+				{
+					correct_input=false;
+					continue;
+				}
+				
+				correct_input=true;
 			}
 			else
 			{
 				correct_input=false;
 			}
 		}
-		
-		int x=Integer.parseInt(input.split(",")[0])+10;
-		int y=Integer.parseInt(input.split(",")[1])+10;
-		
-		/*
-		for(int i=0;i<21;i++)
-		{
-			for(int j=0;j<21;j++)
-			{
-				if(world[i][j]==null)
-					System.out.print("..."+"   ");
-				else
-				{
-					System.out.print(String.format("%03d", world[i][j].getnumber())+"   ");
-				}
-			}
-		    System.out.println();
-		}
-		*/
-		
-		find_events(x,y);
-		
+
+		find_events(x+10,y+10);
 	}
 }
