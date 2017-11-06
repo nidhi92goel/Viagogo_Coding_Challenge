@@ -44,9 +44,6 @@ public class World
 		int x1;
 		int y1;
 		
-		int number;
-		float price;
-		
 		check_event(x,y,0);
 		
 		for(int d=1;d<21;d++)
@@ -113,7 +110,7 @@ public class World
 		
 		while(correct_input==false)
 		{
-			System.out.println("Please Input Coordinates (coordinates seperated by comma eg 4,2):");		
+			System.out.println("Please Input Coordinates (seperated by a comma eg 4,2):");		
 			input=scan.next();
 			
 			if(input.contains(","))
@@ -154,7 +151,9 @@ public class World
 				correct_input=false;
 			}
 		}
-
+		
 		find_events(x+10,y+10);
+		
+		scan.close();
 	}
 }

@@ -1,38 +1,30 @@
+//Class to represent an event happeing in the world
+
 package event_finder;
 
 public class Event 
 {
-	private int e_no;
-	private float ticket_price;
+	private int e_no;            //event number
+	private float ticket_price;  //event ticket price
 	
-	public Event()
+	public Event()               //Class constructor with no inputs
 	{
-		e_no=000;
+		e_no=0;
 		ticket_price=0.0f;
 	}
 	
-	public Event(int event_no, float t_price)
+	public Event(int event_no, float t_price)   //Class constructor with given inputs
 	{
 		e_no=event_no;
 		ticket_price=t_price;
 	}
 	
-	public void setnumber(int event_no)
-	{
-		e_no=event_no;
-	}
-	
-	public int getnumber()
+	public int getnumber()   //Returns the event number of the Event object
 	{
 		return e_no;
 	}
 	
-	public void setprice(float t_price)
-	{
-		ticket_price=t_price;
-	}
-	
-	public float getprice()
+	public float getprice()  //Returns the ticket prive of the Event object
 	{
 		return ticket_price;
 	}
