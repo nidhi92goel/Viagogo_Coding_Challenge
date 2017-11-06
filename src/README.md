@@ -23,3 +23,6 @@ A If there were multiple events at the same location, the Matrix would then cont
 To find the nearest events to inputed coordinates, all the events at a particular Point would be returned to the user before checking the next Point.
 
 ------------------------------------------------------------------------------------------------------------
+
+Q How would you change your program if you were working in a much larger world size?
+A In a much larger world size, the size of the matrix representing the world would change. I would limit the number of events that can be randomly added to the matrix.
